@@ -39,15 +39,15 @@
             <div class="container-fluid pt-4 px-4">
                 <div class="g-4">
                     {{-- to do list --}}
-                    <div class="col-sm-12 col-md-6 col-xl-4">
+                    <div class="col-sm-12 col-md-6 col-xl-4 m-auto">
                         <div class="h-100 bg-secondary rounded p-4">
                             <div class="d-flex align-items-center justify-content-between mb-4">
                                 <h6 class="mb-0">To Do List</h6>
                                 <a href="">Show All</a>
                             </div>
                             <div class="d-flex mb-2">
-                                <input class="form-control bg-transparent" type="text" placeholder="Enter task">
-                                <button type="button" class="btn btn-primary ms-2">Add</button>
+                                <label class="form-control bg-transparent">Enter New Note :</label>
+                                <a type="button" href="{{ route('notes.create') }}" class="btn btn-primary ms-2">Add</a>
                             </div>
                             <div class="d-flex align-items-center border-bottom py-2">
                                 <input class="form-check-input m-0" type="checkbox">

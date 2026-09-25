@@ -10,7 +10,7 @@
 
 <body>
     <div class="container">
-        <h1>My Notes</h1>
+        <h1>New Notes</h1>
         <div id="notes-container"></div>
         <div id="add-note">
             <textarea id="note-text" placeholder="Write your note here..." rows="5"></textarea>

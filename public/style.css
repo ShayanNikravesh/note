@@ -1,10 +1,12 @@
 body {
   font-family: sans-serif;
+  background-color: black;
 }
 
 h1 {
   text-align: center;
   margin-bottom: 20px;
+  color: #ccc;
 }
 
 .container {
