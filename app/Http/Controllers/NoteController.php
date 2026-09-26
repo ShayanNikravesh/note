@@ -12,7 +12,8 @@ class NoteController extends Controller
      */
     public function index()
     {
-        //
+        $notes = Note::all();
+        return view('index',compact('notes'));
     }
 
     /**
@@ -37,7 +38,8 @@ class NoteController extends Controller
         $note->note = $request->note;
         $note->save();
 
-        return redirect('/');
+        return redirect()->back();
+        // return redirect('notes.index');
     }
 
     /**
