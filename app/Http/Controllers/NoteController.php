@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Note;
 use Illuminate\Http\Request;
 
 class NoteController extends Controller
@@ -27,7 +28,16 @@ class NoteController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        
+        $note = $request->validate([
+            'note' => ['required'],
+        ]);
+
+        $note = new Note();
+        $note->note = $request->note;
+        $note->save();
+
+        return redirect('/');
     }
 
     /**

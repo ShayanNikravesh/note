@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->text('note');
             $table->enum('work', ['pending', 'done'])->default('pending');
-            $table->foreignId('user_id')->constrained();
+            // $table->foreignId('user_id')->constrained();
             $table->timestamps();
         });
     }
