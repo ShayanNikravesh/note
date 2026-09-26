@@ -4,7 +4,7 @@ use App\Http\Controllers\NoteController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
-    return view('index');
+    return view('login');
 });
 
 Route::resources([
