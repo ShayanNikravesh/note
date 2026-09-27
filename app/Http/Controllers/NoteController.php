@@ -80,4 +80,28 @@ class NoteController extends Controller
 
         return redirect()->action([NoteController::class, 'index']);
     }
+
+    public function ChangeStatus(string $id)
+    {
+
+        $note = Note::findOrFail($id);
+
+        $status = $note->status;
+        
+        switch ($note->status) {
+            case 'done':
+                $status = 'pending';
+                break;
+            case 'pending':
+                $status = 'done';
+                break;
+            default:
+                break;
+        }
+
+        $note->status = $status;
+        $note->save();
+        
+    }
+
 }

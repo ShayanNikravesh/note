@@ -11,3 +11,5 @@ Route::resources([
     'notes' => NoteController::class,
 ]);
 
+Route::post('notes/ChangeStatus/{id}',[NoteController::class,'ChangeStatus'])->name('change_Status');
+

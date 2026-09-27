@@ -7,6 +7,7 @@
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="" name="keywords">
     <meta content="" name="description">
+    <meta name="csrf-token" content="{{csrf_token()}}">
 
     <!-- Favicon -->
     <link href="img/favicon.ico" rel="icon">
@@ -32,6 +33,7 @@
 </head>
 
 <body>
+    @routes
     <div class="container-fluid position-relative d-flex p-0">
         <!-- Content Start -->
         <div class="content">
@@ -51,7 +53,16 @@
                             </div>
                             @foreach ($notes as $note)
                                 <div class="d-flex align-items-center border-bottom py-2">
-                                    <input class="form-check-input m-0" type="checkbox">
+                                    @switch($note->status)
+                                        @case('done')
+                                            <input onclick="ChangeStatus('{{$note->id}}')" class="form-check-input m-0" type="checkbox" checked id="{{$note->id}}">
+                                            @break
+                                        @case('pending')
+                                            <input onclick="ChangeStatus('{{$note->id}}')" class="form-check-input m-0" type="checkbox" id="{{$note->id}}">
+                                            @break    
+                                    
+                                        @default
+                                    @endswitch
                                     <div class="w-100 ms-3">
                                         <div class="d-flex w-100 align-items-center justify-content-between">
                                             <a style="color: gray" href="{{ route('notes.edit',$note->id) }}"><span>{{$note->note}}</span></a>

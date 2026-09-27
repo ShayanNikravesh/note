@@ -210,3 +210,21 @@
     
 })(jQuery);
 
+function ChangeStatus(id){
+
+    $.ajax({
+        url: route('change_Status',id),
+        method: 'post',
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        },
+        success: function (response) {
+            $('#' + id).load(document.URL + ' #' + id)
+        },
+        error: function (error) {
+            console.log(error)
+        },
+    });
+
+}
+
