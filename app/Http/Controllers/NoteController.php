@@ -38,8 +38,7 @@ class NoteController extends Controller
         $note->note = $request->note;
         $note->save();
 
-        return redirect()->back();
-        // return redirect('notes.index');
+        return redirect()->action([NoteController::class, 'index']);
     }
 
     /**
@@ -47,7 +46,7 @@ class NoteController extends Controller
      */
     public function show(string $id)
     {
-        //
+       //
     }
 
     /**
@@ -55,7 +54,8 @@ class NoteController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $note = Note::find($id);
+        return view('edit',compact('note'));
     }
 
     /**
@@ -63,7 +63,11 @@ class NoteController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $note = Note::find($id);
+        $note->note = $request->note;
+        $note->save();
+        
+        return redirect()->action([NoteController::class, 'index']);
     }
 
     /**

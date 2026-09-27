@@ -54,7 +54,7 @@
                                     <input class="form-check-input m-0" type="checkbox">
                                     <div class="w-100 ms-3">
                                         <div class="d-flex w-100 align-items-center justify-content-between">
-                                            <span>{{$note->note}}</span>
+                                            <a style="color: gray" href="{{ route('notes.edit',$note->id) }}"><span>{{$note->note}}</span></a>
                                             <button class="btn btn-sm"><i class="fa fa-times"></i></button>
                                         </div>
                                     </div>
