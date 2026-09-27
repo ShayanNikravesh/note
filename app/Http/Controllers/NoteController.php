@@ -66,7 +66,7 @@ class NoteController extends Controller
         $note = Note::find($id);
         $note->note = $request->note;
         $note->save();
-        
+
         return redirect()->action([NoteController::class, 'index']);
     }
 
@@ -75,6 +75,9 @@ class NoteController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $note = Note::find($id);
+        $note->delete();
+
+        return redirect()->action([NoteController::class, 'index']);
     }
 }

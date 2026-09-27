@@ -55,7 +55,11 @@
                                     <div class="w-100 ms-3">
                                         <div class="d-flex w-100 align-items-center justify-content-between">
                                             <a style="color: gray" href="{{ route('notes.edit',$note->id) }}"><span>{{$note->note}}</span></a>
-                                            <button class="btn btn-sm"><i class="fa fa-times"></i></button>
+                                            <form action="{{ route('notes.destroy',$note->id) }}" method="POST">
+                                                @csrf
+                                                @method('delete')
+                                                <button type="submit" class="btn btn-sm"><i class="fa fa-times"></i></button>
+                                            </form>
                                         </div>
                                     </div>
                                 </div>
