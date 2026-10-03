@@ -9,6 +9,7 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class LoginController extends Controller
 {
@@ -19,6 +20,8 @@ class LoginController extends Controller
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
  
+            Alert::toast('Welcome!', 'success')->background('#1a1a2e')->flash();
+            
             return redirect()->route('notes.index');
         }
  
@@ -37,7 +40,9 @@ class LoginController extends Controller
         $user->password = $password;
         $user->save();
 
-        return redirect()->back()->with('success', 'success');
+        Alert::toast('ًRegister Successfull!', 'success')->background('#1a1a2e')->flash();
+
+        return redirect('/');
     }
 
     public function logout(Request $request): RedirectResponse

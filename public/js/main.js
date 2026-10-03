@@ -219,10 +219,30 @@ function ChangeStatus(id){
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         },
         success: function (response) {
-            $('#' + id).load(document.URL + ' #' + id)
+            $('#' + id).load(document.URL + ' #' + id);
+
+            Swal.fire({
+                toast: true,
+                position: 'top-end',
+                icon: 'success',
+                title: response.message,
+                background: '#1a1a2e',
+                showConfirmButton: false,
+                showCloseButton: true,
+                timer: 3000
+            });
         },
         error: function (error) {
-            console.log(error)
+            console.log(error);
+
+            Swal.fire({
+                toast: true,
+                position: 'top-end',
+                icon: 'error',
+                title: 'تغییر وضعیت انجام نشد.',
+                showConfirmButton: false,
+                timer: 3000
+            });
         },
     });
 

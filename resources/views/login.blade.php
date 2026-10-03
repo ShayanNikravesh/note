@@ -62,7 +62,7 @@
                             </div>
                             <div class="d-flex align-items-center justify-content-between mb-4">
                                 <a href="{{ route('register') }}">Sign Up</a>
-                                <a href="{{ route('notes.index') }}">Forgot Password</a>
+                                {{-- <a href="{{ route('notes.index') }}">Forgot Password</a> --}}
                             </div>
                             <button type="submit" class="btn btn-primary py-3 w-100 mb-4">Sign In</button>
                         </form>
@@ -86,6 +86,8 @@
 
     <!-- Template Javascript -->
     <script src="{{ asset('js/main.js') }}"></script>
+
+    @sweetAlert
 </body>
 
 </html>

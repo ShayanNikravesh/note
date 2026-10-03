@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Note;
 use Illuminate\Http\Request;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class NoteController extends Controller
 {
@@ -38,6 +39,8 @@ class NoteController extends Controller
         $note->note = $request->note;
         $note->save();
 
+        Alert::toast('Note Saved!', 'success')->background('#1a1a2e')->flash();
+
         return redirect()->action([NoteController::class, 'index']);
     }
 
@@ -67,6 +70,8 @@ class NoteController extends Controller
         $note->note = $request->note;
         $note->save();
 
+        Alert::toast('Note Updated!', 'success')->background('#1a1a2e')->flash();
+
         return redirect()->action([NoteController::class, 'index']);
     }
 
@@ -78,6 +83,8 @@ class NoteController extends Controller
         $note = Note::find($id);
         $note->delete();
 
+        Alert::toast('Note Deleted!', 'success')->background('#1a1a2e')->flash();
+
         return redirect()->action([NoteController::class, 'index']);
     }
 
@@ -86,21 +93,14 @@ class NoteController extends Controller
 
         $note = Note::findOrFail($id);
 
-        $status = $note->status;
-        
-        switch ($note->status) {
-            case 'done':
-                $status = 'pending';
-                break;
-            case 'pending':
-                $status = 'done';
-                break;
-            default:
-                break;
-        }
-
-        $note->status = $status;
+        $note->status = $note->status === 'done' ? 'pending' : 'done';
         $note->save();
+
+        return response()->json([
+            'success' => true,
+            'status' => $note->status,
+            'message' => 'Status Changed',
+        ]);
         
     }
 
