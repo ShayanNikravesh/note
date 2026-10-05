@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\AuthenticationRequest;
 use App\Models\User;
-use Illuminate\Contracts\Support\ValidatedData;
+use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -39,6 +39,8 @@ class LoginController extends Controller
         $user->email = $request->email;
         $user->password = $password;
         $user->save();
+
+        event(new Registered($user));
 
         Alert::toast('ًRegister Successfull!', 'success')->background('#1a1a2e')->flash();
 
