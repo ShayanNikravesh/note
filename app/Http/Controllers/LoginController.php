@@ -22,7 +22,7 @@ class LoginController extends Controller
  
             Alert::toast('Welcome!', 'success')->background('#1a1a2e')->flash();
             
-            return redirect()->route('notes.index');
+            return redirect()->action([NoteController::class, 'index']);
         }
  
         return back()->withErrors([

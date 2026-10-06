@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\NoteStored;
 use App\Models\Note;
 use Illuminate\Http\Request;
 use RealRashid\SweetAlert\Facades\Alert;
@@ -38,6 +39,8 @@ class NoteController extends Controller
         $note = new Note();
         $note->note = $request->note;
         $note->save();
+
+        event(new NoteStored($note));
 
         Alert::toast('Note Saved!', 'success')->background('#1a1a2e')->flash();
 
