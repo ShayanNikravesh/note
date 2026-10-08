@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Events\NoteStored;
 use App\Models\Note;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use RealRashid\SweetAlert\Facades\Alert;
 
 class NoteController extends Controller
@@ -14,7 +16,7 @@ class NoteController extends Controller
      */
     public function index()
     {
-        $notes = Note::all();
+        $notes = Auth::user()->notes;
         return view('index',compact('notes'));
     }
 
@@ -38,6 +40,7 @@ class NoteController extends Controller
 
         $note = new Note();
         $note->note = $request->note;
+        $note->user_id = $request->user()->id;
         $note->save();
 
         event(new NoteStored($note));
@@ -60,7 +63,13 @@ class NoteController extends Controller
      */
     public function edit(string $id)
     {
-        $note = Note::find($id);
+        $user_id = Auth::id();
+
+        $note = Note::where([
+            'id' => $id,
+            'user_id' => $user_id,
+        ])->firstOrFail();
+
         return view('edit',compact('note'));
     }
 
@@ -69,7 +78,12 @@ class NoteController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        $note = Note::find($id);
+        $user_id = $request->user()->id;
+
+        $note = Note::where([
+            'id' => $id,
+            'user_id' => $user_id,
+        ])->firstOrFail();
         $note->note = $request->note;
         $note->save();
 
