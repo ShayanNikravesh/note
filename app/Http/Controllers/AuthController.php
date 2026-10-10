@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use RealRashid\SweetAlert\Facades\Alert;
 
-class LoginController extends Controller
+class AuthController extends Controller
 {
     public function authenticate(AuthenticationRequest $request): RedirectResponse
     {
@@ -57,5 +57,4 @@ class LoginController extends Controller
     
         return redirect('/');
     }
-
 }

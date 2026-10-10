@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\LoginController;
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\NoteController;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use Illuminate\Support\Facades\Route;
@@ -15,9 +15,9 @@ Route::get('register',function(){
     return view('register');
 })->name('register');
 
-Route::post('/login',[LoginController::class,'authenticate'])->name('sign_in');
+Route::post('/login',[AuthController::class,'authenticate'])->name('sign_in');
 
-Route::post('/signup',[LoginController::class,'signup'])->name('sign_up');
+Route::post('/signup',[AuthController::class,'signup'])->name('sign_up');
 
 Route::middleware('auth:web')->group(function () {
 
@@ -39,7 +39,7 @@ Route::middleware('auth:web')->group(function () {
 
     Route::post('notes/ChangeStatus/{id}',[NoteController::class,'ChangeStatus'])->name('change_Status');
 
-    Route::post('/logout',[LoginController::class,'logout'])->name('logout');
+    Route::post('/logout',[AuthController::class,'logout'])->name('logout');
 
 });
 
