@@ -41,9 +41,9 @@
             <div class="container-fluid pt-4 px-4">
                 <div class="g-4">
                     <form method="POST" action="{{ route('logout') }}">
-                                    @csrf
-                                    <button type="submit" class="btn btn-primary ms-2">Exit</button>
-                                </form>
+                        @csrf
+                        <button type="submit" class="btn btn-primary ms-2">Exit</button>
+                    </form>
                     {{-- to do list --}}
                     <div class="col-sm-12 col-md-6 col-xl-4 m-auto">
                         <div class="h-100 bg-secondary rounded p-4">
