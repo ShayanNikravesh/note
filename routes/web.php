@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Route;
 Route::view('/', 'login')->name('login');
 
 // Route::get('/', function () {
-//     return view('login');
+//     return response('Hello World', 200)->header('Content-Type', 'text/plain');
 // })->name('login');
 
 Route::get('register',function(){
