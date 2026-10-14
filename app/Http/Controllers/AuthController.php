@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\AuthenticationRequest;
+use App\Jobs\ProcessEmail;
 use App\Models\User;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\RedirectResponse;
@@ -21,6 +22,10 @@ class AuthController extends Controller
             $request->session()->regenerate();
  
             Alert::toast('Welcome!', 'success')->background('#1a1a2e')->flash();
+
+            //sending welcome mail
+            $user = Auth::user();
+            ProcessEmail::dispatch($user->email);
             
             return redirect()->action([NoteController::class, 'index']);
         }
