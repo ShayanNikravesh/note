@@ -25,6 +25,8 @@
     {{-- <link href="{{asset('lib/owlcarousel/assets/owl.carousel.min.css')}}" rel="stylesheet">
     <link href="{{asset('lib/tempusdominus/css/tempusdominus-bootstrap-4.min.css')}}" rel="stylesheet" /> --}}
 
+    <link rel="stylesheet" href="https://cdn.plyr.io/3.8.5/plyr.css" />
+
     <!-- Customized Bootstrap Stylesheet -->
     <link href="{{asset('css/bootstrap.min.css')}}" rel="stylesheet">
 
@@ -78,6 +80,25 @@
                                     </div>
                                 </div>
                             @endforeach
+                            {{-- Video Player : --}}
+                            <video id="player" playsinline controls data-poster="{{ asset('storage/pic/1.jpg') }}">
+
+                                {{-- Main Video : --}}
+                                <source src="{{ asset('storage/videos/video.mp4') }}" type="video/mp4" />
+
+                                {{-- Backup Link : --}}
+                                {{-- <source src="{{asset('storage/videos/koulampic.webm')}}" type="video/webm" /> --}}
+
+                                <!-- Captions are optional -->
+                                {{-- <track kind="captions" label="English captions" src="/path/to/captions.vtt" srclang="en" default /> --}}
+
+                            </video>
+
+                            {{-- Audio Player : --}}
+                            {{-- <audio id="player" controls>
+                                <source src="{{ asset('storage/voice/m.mp3') }}" type="audio/mp3" />
+                                <source src="/path/to/audio.ogg" type="audio/ogg" />
+                            </audio> --}}
                         </div>
                     </div>
                     {{-- end --}}
@@ -104,6 +125,13 @@
 
     <!-- Template Javascript -->
     <script src="{{asset('js/main.js')}}"></script>
+
+    {{-- Player --}}
+    <script src="https://cdn.plyr.io/3.8.5/plyr.js"></script>
+
+    <script>
+    const player = new Plyr('#player');
+    </script>
 
     @sweetAlert
 </body>
