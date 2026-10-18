@@ -22,9 +22,9 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        Event::listen(
-            NoteStored::class,
-            SendStoreNotification::class,
-        );
+        // Event::listen(
+        //     NoteStored::class,
+        //     SendStoreNotification::class,
+        // );
     }
 }
